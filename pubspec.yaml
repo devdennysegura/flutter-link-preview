@@ -1,5 +1,5 @@
 name: link_preview
-description: A new flutter plugin project.
+description: Flutter plugin Rich Link Preview, enabling Android and iOS, with customs component like WhatApp Link Preview, Telegram Link Preview, Skype Link Preview, Twitter Link Preview, LinkedIn Link Preview.
 version: 0.0.1
 author: Denny Segura <dev.dennysegura@gmail.com>
 homepage: https://github.com/devdennysegura/flutter-link-preview
@@ -13,5 +13,5 @@ dependencies:
 
 flutter:
   plugin:
-    androidPackage: io.flutter.plugins.linkpreview.linkpreview
+    androidPackage: io.flutter.plugins.linkpreview
     pluginClass: LinkPreviewPlugin
