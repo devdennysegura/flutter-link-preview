@@ -1,0 +1,17 @@
+name: link_preview
+description: A new flutter plugin project.
+version: 0.0.1
+author: Denny Segura <dev.dennysegura@gmail.com>
+homepage: https://github.com/devdennysegura/flutter-link-preview
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: io.flutter.plugins.linkpreview.linkpreview
+    pluginClass: LinkPreviewPlugin
