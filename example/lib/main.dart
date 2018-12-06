@@ -12,32 +12,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
+  LinkPreview previwer = LinkPreview();
+  Future<String> _message = Future<String>.value('');
   @override
   void initState() {
     super.initState();
-    initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
+  Future<String> initMetaDataState() async {
+    dynamic linkPreview;
     try {
-      platformVersion = await LinkPreview.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      linkPreview = await previwer.getUrlMetaData(url: 'https://whatsapp.com');
+    } on PlatformException catch (e) {
+      debugPrint(e.message);
+      linkPreview = 'Failed to get platform version.';
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+    return linkPreview.toString();
   }
 
   @override
@@ -45,10 +35,30 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Rich Link Preview example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            previwer.whatsAppLinkPreview(url: 'https://flutter.io'),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  _message = initMetaDataState();
+                });
+              },
+              textColor: Colors.white,
+              child: Text('Test Whatsapp Preview Metadata'),
+              color: Colors.blue,
+            ),
+            FutureBuilder<String>(
+              future: _message,
+              builder: (_, AsyncSnapshot<String> snapshot) {
+                return Text(snapshot.data ?? '');
+              },
+            ),
+          ],
         ),
       ),
     );
