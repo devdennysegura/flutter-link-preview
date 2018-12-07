@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+part of link_preview;
 
-class View extends StatelessWidget {
+class WhatsAppView extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
   final String url;
 
-  View(
+  WhatsAppView(
       {Key key,
       @required this.imageUrl,
       @required this.title,
@@ -17,10 +17,10 @@ class View extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
       constraints: BoxConstraints(maxWidth: screenSize.width * 0.84),
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(4.0),
       decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: new BorderRadius.circular(16.0),
+        color: Color.fromRGBO(223, 249, 204, 1.0),
+        borderRadius: new BorderRadius.circular(8.0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,13 +28,14 @@ class View extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.0),
             child: Container(
-                height: screenSize.width * 0.18,
-                width: screenSize.width * 0.18,
-                color: Colors.white,
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.contain,
-                )),
+              height: screenSize.width * 0.18,
+              width: screenSize.width * 0.18,
+              color: Colors.white,
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -42,20 +43,15 @@ class View extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(bottom: 8.0),
-                width: screenSize.width * 0.50,
+                width: screenSize.width * 0.58,
                 child: Text(
                   title,
                   maxLines: 1,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
                 ),
               ),
               Container(
-                width: screenSize.width * 0.50,
+                width: screenSize.width * 0.58,
                 child: Row(
                   children: <Widget>[
                     new Expanded(
@@ -71,6 +67,13 @@ class View extends StatelessWidget {
                       ),
                     )
                   ],
+                ),
+              ),
+              Text(
+                url,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 10.0,
                 ),
               ),
             ],

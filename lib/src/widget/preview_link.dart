@@ -1,6 +1,4 @@
-import 'package:flutter/services.dart';
-import 'package:async/async.dart';
-import 'package:flutter/widgets.dart';
+part of link_preview;
 
 class PreviewLink {
   AsyncMemoizer memoizer;

@@ -1,20 +1,20 @@
-import 'package:flutter/material.dart';
+part of link_preview;
 
-class View extends StatelessWidget {
+class TelegramView extends StatelessWidget {
   final String url;
   final String imageUrl;
   final String title;
   final String description;
   String newUrl;
 
-  View({
+  TelegramView({
     Key key,
     @required this.url,
     @required this.imageUrl,
     @required this.title,
     @required this.description,
   }) {
-    newUrl = this.url.contains('http') ? this.url : 'www.${this.url}';
+    this.newUrl = this.url.contains('http') ? this.url : 'www.${this.url}';
   }
 
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+part of link_preview;
 
-class View extends StatelessWidget {
+class TwitterView extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
   final String url;
 
-  View(
+  TwitterView(
       {Key key,
       @required this.imageUrl,
       @required this.title,
@@ -17,15 +17,17 @@ class View extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
       constraints: BoxConstraints(maxWidth: screenSize.width * 0.84),
-      padding: EdgeInsets.only(bottom: 32.0, left: 4.0, top: 4.0, right: 4.0),
-      color: Colors.white,
+      padding: EdgeInsets.all(16.0),
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        borderRadius: new BorderRadius.circular(16.0),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.0),
             child: Container(
-                margin: EdgeInsets.only(right: 16.0),
                 height: screenSize.width * 0.18,
                 width: screenSize.width * 0.18,
                 color: Colors.white,
@@ -40,31 +42,35 @@ class View extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                width: screenSize.width * 0.57,
+                margin: EdgeInsets.only(bottom: 8.0),
+                width: screenSize.width * 0.50,
                 child: Text(
                   title,
                   maxLines: 1,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 14.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               Container(
-                width: screenSize.width * 0.57,
-                child: RichText(
-                  maxLines: 2,
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: url, style: TextStyle(color: Colors.black54)),
-                      TextSpan(
-                          text: ' $description',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 12.0)),
-                    ],
-                  ),
+                width: screenSize.width * 0.50,
+                child: Row(
+                  children: <Widget>[
+                    new Expanded(
+                      child: new Text(
+                        description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.0,
+                          wordSpacing: 0.0,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ],

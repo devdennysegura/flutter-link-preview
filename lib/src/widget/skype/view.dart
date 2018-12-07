@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+part of link_preview;
 
-class View extends StatelessWidget {
+class SkypeView extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
   final String url;
   final String favUrl;
 
-  View(
+  SkypeView(
       {Key key,
       @required this.imageUrl,
       @required this.title,

@@ -3,11 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:link_preview/link_preview.dart';
-import 'package:link_preview/widget/whatsapp/index.dart';
-import 'package:link_preview/widget/linkedin/index.dart';
-import 'package:link_preview/widget/skype/index.dart';
-import 'package:link_preview/widget/twitter/index.dart';
-import 'package:link_preview/widget/telegram/index.dart';
 
 void main() => runApp(MyApp());
 
