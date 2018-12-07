@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class WhatsAppPreview extends StatelessWidget {
+class View extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
   final String url;
 
-  WhatsAppPreview(
+  View(
       {Key key,
       @required this.imageUrl,
       @required this.title,
@@ -17,17 +17,15 @@ class WhatsAppPreview extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Container(
       constraints: BoxConstraints(maxWidth: screenSize.width * 0.84),
-      padding: EdgeInsets.all(4.0),
-      decoration: new BoxDecoration(
-        color: Color.fromRGBO(223, 249, 204, 1.0),
-        borderRadius: new BorderRadius.circular(8.0),
-      ),
+      padding: EdgeInsets.only(bottom: 32.0, left: 4.0, top: 4.0, right: 4.0),
+      color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.0),
             child: Container(
+                margin: EdgeInsets.only(right: 16.0),
                 height: screenSize.width * 0.18,
                 width: screenSize.width * 0.18,
                 color: Colors.white,
@@ -42,37 +40,31 @@ class WhatsAppPreview extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                width: screenSize.width * 0.58,
+                width: screenSize.width * 0.57,
                 child: Text(
                   title,
                   maxLines: 1,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               Container(
-                width: screenSize.width * 0.58,
-                child: Row(
-                  children: <Widget>[
-                    new Expanded(
-                      child: new Text(
-                        description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 12.0,
-                          wordSpacing: 0.0,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Text(
-                url,
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 10.0,
+                width: screenSize.width * 0.57,
+                child: RichText(
+                  maxLines: 2,
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: url, style: TextStyle(color: Colors.black54)),
+                      TextSpan(
+                          text: ' $description',
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 12.0)),
+                    ],
+                  ),
                 ),
               ),
             ],
