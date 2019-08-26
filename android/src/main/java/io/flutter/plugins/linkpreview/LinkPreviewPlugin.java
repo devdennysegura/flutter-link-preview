@@ -1,6 +1,7 @@
 package io.flutter.plugins.linkpreview;
 
 import android.webkit.URLUtil;
+import android.os.Handler;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +22,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 public class LinkPreviewPlugin implements MethodCallHandler {
   private final Registrar registrar;
+  final private Handler mainHandler = new Handler();
 
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "plugins.flutter.io/link_preview");
@@ -48,7 +50,7 @@ public class LinkPreviewPlugin implements MethodCallHandler {
     new Thread(new Runnable() {
       @Override
       public void run() {
-        MetaData metaData = new MetaData();
+        final MetaData metaData = new MetaData();
         try {
           Document doc = Jsoup.connect(url).timeout(5 * 1000).get();
           Elements elements = doc.getElementsByTag("meta");
@@ -146,7 +148,12 @@ public class LinkPreviewPlugin implements MethodCallHandler {
         } catch (IOException e) {
           e.printStackTrace();
         }
-        result.success(metaData.toJSON());
+        mainHandler.post(new Runnable() {
+          @Override
+          public void run() {
+            result.success(metaData.toJSON());
+          }
+        });
       }
     }).start();
   }

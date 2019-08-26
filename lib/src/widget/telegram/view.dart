@@ -5,7 +5,7 @@ class TelegramView extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
-  String newUrl;
+  final String newUrl;
 
   TelegramView({
     Key key,
@@ -13,9 +13,7 @@ class TelegramView extends StatelessWidget {
     @required this.imageUrl,
     @required this.title,
     @required this.description,
-  }) {
-    this.newUrl = this.url.contains('http') ? this.url : 'www.${this.url}';
-  }
+  }) : this.newUrl = url.contains('http') ? url : 'www.$url';
 
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
